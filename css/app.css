@@ -28,6 +28,10 @@ body {
     flex-direction: column;
 }
 
+#startButton {
+  margin: 5px;
+}
+
 h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
@@ -49,6 +53,13 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 3em;
+}
+
+.board{
+    width: 660px;
+    min-height: 680px;
+    background: black;
+
 }
 
 .deck .card {

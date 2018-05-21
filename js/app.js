@@ -71,7 +71,6 @@ function setupGame() {
 //count moves
   moves = 0;
 
-console.log(moves);
 }
 
 function addMoves () {

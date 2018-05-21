@@ -1,18 +1,22 @@
 //Variables
 
 const startButton = document.querySelector("#startButton");
-const board = document.querySelector("#board");
+const deck = document.querySelector(".deck");
 /*
  * Create a list that holds all of your cards
   */
-const cardPictures = document.getElementsByTagName("i");
+const cards = document.querySelectorAll(".card");
 
-const arrayOfCardPictures = Array.from(cardPictures);
+const arrayOfCards = Array.from(cards);
 
-arrayOfCardPictures.splice(0,4);
 
-let shuffledCards = shuffle(arrayOfCardPictures);
+let shuffledCards = shuffle(arrayOfCards);
+let listOfOpenCards = [];
+let listOfMatchedCards = [];
 
+
+let movesNumber = document.querySelector('.moves');
+let moves = 0;
 
 // FUNCTIONS:
 
@@ -21,26 +25,19 @@ let shuffledCards = shuffle(arrayOfCardPictures);
 // // Create unordered list;
 //
  function makeUL() {
-     // Create the deck element:
 
-     const deck = document.createElement("ul");
-     deck.classList.add("deck");
-     deck.setAttribute("id", "memory-board");
+     // Create the deck element:
+     deck.innerHTML=" ";
+
 
      for(let j = 0; j < 16 ; j++) {
-         // Create the deck card:
-         const card = document.createElement("li");
-         //adding card class to card li:
-         card.classList.add("card");
 
-         //console.log(card);
-         // Set its contents:
-         card.appendChild(shuffledCards[j]);
+        shuffledCards[j].classList.remove("show", "open", "match", "card");
+        shuffledCards[j].classList.add("card");
+        shuffledCards[j].addEventListener("click", showCard);
+        deck.appendChild(shuffledCards[j]);
 
-         // Add it to the list:
-         deck.appendChild(card);
-
-        }
+      }
 
      // Finally, return the constructed list:
      return deck;
@@ -69,36 +66,69 @@ let shuffledCards = shuffle(arrayOfCardPictures);
   }
 
 function setupGame() {
-
-  for (let j = 0; j < 16; j++) {
-    shuffledCards[j].classList.remove("show", "open", "match");
-
+//function to initialise game
   makeUL();
+//count moves
+  moves = 0;
 
-  }
+console.log(moves);
+}
+
+function addMoves () {
+  moves++;
+  movesNumber.innerHTML = moves;
+  //starRating()
+}
+
+
+function showCard (target) {
+console.log(this);
+
+  this.classList.add("open","show");
+  listOfOpenCards.push(this);
+
+
+
+  if (listOfOpenCards.length === 2){
+      addMoves();
+      checkMatch();
+      }
+}
+
+
+function checkMatch (){
+  let card_one = listOfOpenCards[0];
+  let card_two = listOfOpenCards[1];
+
+
+  let card_one_symbol = card_one.innerHTML;
+  let card_two_symbol = card_two.innerHTML;
+
+  if (card_one_symbol === card_two_symbol){
+
+    card_one.classList.add("match");
+    card_two.classList.add("match");
+    listOfMatchedCards.push(card_one,card_two);
+
+}
+  else{
+    setTimeout(function(){
+      card_one.classList.remove("open","show");
+      card_two.classList.remove("open","show");
+    }, 1000)
+    }
+
+  listOfOpenCards=[];
+
 
 }
 
 
-function clickOnCard() {
-  for (let shuffledCard of shuffledCards) {
-  shuffledCard.addEventListener('click', showCard)
-}
-}
+// init Gameboard when DOM content is loaded
+document.addEventListener("DOMContentLoaded", function(event) {
+    setupGame();
+});
 
-
-function showCard () {
-  this.classList.add("open");
-  this.classList.add("show");
-
-}
-//
-//document.body.onload = setupGame();
-// $(document).ready(function() {
-//
-//   setupGame();
-//
-//     )}
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)

@@ -1,7 +1,12 @@
 //Variables
 
-const startButton = document.querySelector("#startButton");
+
 const deck = document.querySelector(".deck");
+const starOne = document.querySelector('.star_one');
+const starTwo = document.querySelector('.star_two');
+const starThree = document.querySelector('.star_three');
+const stars = document.querySelector('.stars');
+
 /*
  * Create a list that holds all of your cards
   */
@@ -37,6 +42,9 @@ let moves = 0;
         shuffledCards[j].addEventListener("click", showCard);
         deck.appendChild(shuffledCards[j]);
 
+        //rating
+
+
       }
 
      // Finally, return the constructed list:
@@ -70,18 +78,21 @@ function setupGame() {
   makeUL();
 //count moves
   moves = 0;
+//rating
+  rating();
+
 
 }
 
-function addMoves () {
+function addMoves() {
   moves++;
   movesNumber.innerHTML = moves;
   //starRating()
 }
 
 
-function showCard (target) {
-console.log(this);
+function showCard(target) {
+  //console.log(this);
 
   this.classList.add("open","show");
   listOfOpenCards.push(this);
@@ -95,7 +106,7 @@ console.log(this);
 }
 
 
-function checkMatch (){
+function checkMatch() {
   let card_one = listOfOpenCards[0];
   let card_two = listOfOpenCards[1];
 
@@ -122,31 +133,43 @@ function checkMatch (){
 
 }
 
-function rating () {
-  if (moves <= 13) {
-    document.querySelector('.star_one').innerHTML = '<i class="fa fa-star-o"></i>';
-    document.querySelector('.star_two').innerHTML = '<i class="fa fa-star-o"></i>';
-    document.querySelector('.star_three').innerHTML = '<i class="fa fa-star-o"></i>';
+function rating() {
+  if (moves<=13) {
+    starOne.innerHTML='<i class="fa fa-star-o"></i>';
+    starTwo.innerHTML='<i class="fa fa-star-o"></i>';
+    starThree.innerHTML='<i class="fa fa-star-o"></i>';
+    console.log(starOne);
+    console.log(starTwo);
+    console.log(starThree);
     //ratingStars = 3
   }
 
-  if (moves > 13 && moves <= 19) {
-    document.querySelector('.star_one').innerHTML = '<i class="fa fa-star-o"></i>';
-    document.querySelector('.star_two').innerHTML = '<i class="fa fa-star-o"></i>';
-    document.querySelector('.star_three').innerHTML = '';
+  if (moves>13 && moves<=19) {
+    starOne.innerHTML='<i class="fa fa-star-o"></i>';
+    starTwo.innerHTML='<i class="fa fa-star-o"></i>';
+    starThree.innerHTML='';
+    console.log(starOne);
+    console.log(starTwo);
+    console.log(starThree);
     //ratingStars = 2
   }
 
-  if (moves > 20 && moves <= 23)  {
-    document.querySelector('.star_one').innerHTML = '<i class="fa fa-star-o"></i>';
-    document.querySelector('.star_two').innerHTML = '';
-    document.querySelector('.star_three').innerHTML = '';
+  if (moves>20 && moves<=23)  {
+    starOne.innerHTML='<i class="fa fa-star-o"></i>';
+    starTwo.innerHTML='';
+    starThree.innerHTML='';
+    console.log(starOne);
+    console.log(starTwo);
+    console.log(starThree);
     //ratingStars = 1
   }
-  if (moves > 23)  {
-    document.querySelector('.star_one').innerHTML = '';
-    document.querySelector('.star_two').innerHTML = '';
-    document.querySelector('.star_three').innerHTML = '';
+  if (moves>23)  {
+    starOne.innerHTML='';
+    starTwo.innerHTML='';
+    starThree.innerHTML='';
+    console.log(starOne);
+    console.log(starTwo);
+    console.log(starThree);
     //ratingStars = 0
   }
 }

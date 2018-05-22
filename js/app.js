@@ -122,6 +122,34 @@ function checkMatch (){
 
 }
 
+function rating () {
+  if (moves <= 13) {
+    document.querySelector('.star_one').innerHTML = '<i class="fa fa-star-o"></i>';
+    document.querySelector('.star_two').innerHTML = '<i class="fa fa-star-o"></i>';
+    document.querySelector('.star_three').innerHTML = '<i class="fa fa-star-o"></i>';
+    //ratingStars = 3
+  }
+
+  if (moves > 13 && moves <= 19) {
+    document.querySelector('.star_one').innerHTML = '<i class="fa fa-star-o"></i>';
+    document.querySelector('.star_two').innerHTML = '<i class="fa fa-star-o"></i>';
+    document.querySelector('.star_three').innerHTML = '';
+    //ratingStars = 2
+  }
+
+  if (moves > 20 && moves <= 23)  {
+    document.querySelector('.star_one').innerHTML = '<i class="fa fa-star-o"></i>';
+    document.querySelector('.star_two').innerHTML = '';
+    document.querySelector('.star_three').innerHTML = '';
+    //ratingStars = 1
+  }
+  if (moves > 23)  {
+    document.querySelector('.star_one').innerHTML = '';
+    document.querySelector('.star_two').innerHTML = '';
+    document.querySelector('.star_three').innerHTML = '';
+    //ratingStars = 0
+  }
+}
 
 // init Gameboard when DOM content is loaded
 document.addEventListener("DOMContentLoaded", function(event) {

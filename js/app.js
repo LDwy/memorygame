@@ -6,6 +6,7 @@ const starOne = document.querySelector('.star_one');
 const starTwo = document.querySelector('.star_two');
 const starThree = document.querySelector('.star_three');
 const stars = document.querySelector('.stars');
+const restart = document.querySelector('.restart');
 
 /*
  * Create a list that holds all of your cards
@@ -79,8 +80,7 @@ function setupGame() {
   makeUL();
 //count moves
   moves = 0;
-//rating
-  rating();
+
 
 
 }
@@ -103,6 +103,8 @@ function showCard(target) {
   if (listOfOpenCards.length === 2){
       addMoves();
       checkMatch();
+      //rating
+      rating();
       }
 }
 
@@ -135,40 +137,39 @@ function checkMatch() {
 }
 
 function rating() {
+   //console.log("hallo");
   if (moves<=13) {
     starOne.innerHTML='<i class="fa fa-star-o"></i>';
     starTwo.innerHTML='<i class="fa fa-star-o"></i>';
     starThree.innerHTML='<i class="fa fa-star-o"></i>';
+    //console.log("hallo3");
 
     //ratingStars = 3
   }
 
   if (moves>13 && moves<=19) {
+    //  console.log("hallo2");
     starOne.innerHTML='<i class="fa fa-star-o"></i>';
     starTwo.innerHTML='<i class="fa fa-star-o"></i>';
     starThree.innerHTML='';
-    // console.log(starOne);
-    // console.log(starTwo);
-    // console.log(starThree);
+
     //ratingStars = 2
   }
 
   if (moves>20 && moves<=23)  {
+    //console.log("hallo1");
     starOne.innerHTML='<i class="fa fa-star-o"></i>';
     starTwo.innerHTML='';
     starThree.innerHTML='';
-    // console.log(starOne);
-    // console.log(starTwo);
-    // console.log(starThree);
+
     //ratingStars = 1
   }
   if (moves>23)  {
+    //console.log("hallo0");
     starOne.innerHTML='';
     starTwo.innerHTML='';
     starThree.innerHTML='';
-    // console.log(starOne);
-    // console.log(starTwo);
-    // console.log(starThree);
+
     //ratingStars = 0
   }
 }

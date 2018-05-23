@@ -21,7 +21,8 @@ let listOfMatchedCards = [];
 
 
 let movesNumber = document.querySelector('.moves');
-let moves = 0;
+let moves= 0 ;
+
 
 // FUNCTIONS:
 
@@ -125,7 +126,7 @@ function checkMatch() {
     setTimeout(function(){
       card_one.classList.remove("open","show");
       card_two.classList.remove("open","show");
-    }, 1000)
+    }, 750)
     }
 
   listOfOpenCards=[];
@@ -138,9 +139,7 @@ function rating() {
     starOne.innerHTML='<i class="fa fa-star-o"></i>';
     starTwo.innerHTML='<i class="fa fa-star-o"></i>';
     starThree.innerHTML='<i class="fa fa-star-o"></i>';
-    console.log(starOne);
-    console.log(starTwo);
-    console.log(starThree);
+
     //ratingStars = 3
   }
 
@@ -148,9 +147,9 @@ function rating() {
     starOne.innerHTML='<i class="fa fa-star-o"></i>';
     starTwo.innerHTML='<i class="fa fa-star-o"></i>';
     starThree.innerHTML='';
-    console.log(starOne);
-    console.log(starTwo);
-    console.log(starThree);
+    // console.log(starOne);
+    // console.log(starTwo);
+    // console.log(starThree);
     //ratingStars = 2
   }
 
@@ -158,18 +157,18 @@ function rating() {
     starOne.innerHTML='<i class="fa fa-star-o"></i>';
     starTwo.innerHTML='';
     starThree.innerHTML='';
-    console.log(starOne);
-    console.log(starTwo);
-    console.log(starThree);
+    // console.log(starOne);
+    // console.log(starTwo);
+    // console.log(starThree);
     //ratingStars = 1
   }
   if (moves>23)  {
     starOne.innerHTML='';
     starTwo.innerHTML='';
     starThree.innerHTML='';
-    console.log(starOne);
-    console.log(starTwo);
-    console.log(starThree);
+    // console.log(starOne);
+    // console.log(starTwo);
+    // console.log(starThree);
     //ratingStars = 0
   }
 }

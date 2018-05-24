@@ -35,7 +35,7 @@ let moves= 0 ;
 
      // Create the deck element:
      deck.innerHTML=" ";
-
+     restartGame();
 
      for(let j = 0; j < 16 ; j++) {
 
@@ -44,7 +44,7 @@ let moves= 0 ;
         shuffledCards[j].addEventListener("click", showCard);
         deck.appendChild(shuffledCards[j]);
 
-        //rating
+
 
 
       }
@@ -81,9 +81,22 @@ function setupGame() {
 //count moves
   moves = 0;
 
-
-
 }
+
+function restartGame(){
+  restart.addEventListener("click", function () {
+
+  shuffle(arrayOfCards);
+
+  setupGame();
+
+  rating();
+
+
+  })
+}
+
+
 
 function addMoves() {
   moves++;
@@ -105,6 +118,7 @@ function showCard(target) {
       checkMatch();
       //rating
       rating();
+
       }
 }
 
@@ -137,18 +151,18 @@ function checkMatch() {
 }
 
 function rating() {
-   //console.log("hallo");
+
   if (moves<=13) {
+
     starOne.innerHTML='<i class="fa fa-star-o"></i>';
     starTwo.innerHTML='<i class="fa fa-star-o"></i>';
     starThree.innerHTML='<i class="fa fa-star-o"></i>';
-    //console.log("hallo3");
 
     //ratingStars = 3
   }
 
-  if (moves>13 && moves<=19) {
-    //  console.log("hallo2");
+  if (moves>13 && moves<=24) {
+
     starOne.innerHTML='<i class="fa fa-star-o"></i>';
     starTwo.innerHTML='<i class="fa fa-star-o"></i>';
     starThree.innerHTML='';
@@ -156,23 +170,19 @@ function rating() {
     //ratingStars = 2
   }
 
-  if (moves>20 && moves<=23)  {
-    //console.log("hallo1");
+  if (moves>25)  {
+
     starOne.innerHTML='<i class="fa fa-star-o"></i>';
     starTwo.innerHTML='';
     starThree.innerHTML='';
 
     //ratingStars = 1
   }
-  if (moves>23)  {
-    //console.log("hallo0");
-    starOne.innerHTML='';
-    starTwo.innerHTML='';
-    starThree.innerHTML='';
-
-    //ratingStars = 0
-  }
 }
+//timer
+
+
+
 
 // init Gameboard when DOM content is loaded
 document.addEventListener("DOMContentLoaded", function(event) {

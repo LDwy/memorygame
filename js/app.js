@@ -2,11 +2,11 @@
 
 
 const deck = document.querySelector(".deck");
-const starOne = document.querySelector('.star_one');
-const starTwo = document.querySelector('.star_two');
-const starThree = document.querySelector('.star_three');
-const stars = document.querySelector('.stars');
-const restart = document.querySelector('.restart');
+const starOne = document.querySelector(".star_one");
+const starTwo = document.querySelector(".star_two");
+const starThree = document.querySelector(".star_three");
+const stars = document.querySelector(".stars");
+const restart = document.querySelector(".restart");
 
 /*
  * Create a list that holds all of your cards
@@ -21,7 +21,7 @@ let listOfOpenCards = [];
 let listOfMatchedCards = [];
 
 
-let movesNumber = document.querySelector('.moves');
+let movesNumber = document.querySelector(".moves");
 let moves= 0 ;
 
 
@@ -42,6 +42,7 @@ let moves= 0 ;
         shuffledCards[j].classList.remove("show", "open", "match", "card");
         shuffledCards[j].classList.add("card");
         shuffledCards[j].addEventListener("click", showCard);
+
         deck.appendChild(shuffledCards[j]);
 
 
@@ -80,7 +81,8 @@ function setupGame() {
   makeUL();
 //count moves
   moves = 0;
-
+//timer
+  startTimer();
 }
 
 function restartGame(){
@@ -88,6 +90,8 @@ function restartGame(){
 
   shuffle(arrayOfCards);
 
+  stopTimer();
+  movesNumber.innerHTML=0;
   setupGame();
 
   rating();
@@ -124,6 +128,7 @@ function showCard(target) {
 
 
 function checkMatch() {
+
   let card_one = listOfOpenCards[0];
   let card_two = listOfOpenCards[1];
 
@@ -147,9 +152,9 @@ function checkMatch() {
 
   listOfOpenCards=[];
 
-
 }
 
+//rating
 function rating() {
 
   if (moves<=13) {
@@ -179,9 +184,21 @@ function rating() {
     //ratingStars = 1
   }
 }
-//timer
 
 
+//timer from http://logicalmoon.com/2015/05/using-javascript-to-create-a-timer/
+function startTimer() {
+        var seconds = 00;
+	timer = setInterval(function() {
+	    seconds ++;
+	    document.getElementById("seconds").innerText = seconds % 60;
+            document.getElementById("minutes").innerText = parseInt(seconds / 60);
+        }, 1000);
+}
+
+function stopTimer() {
+        clearInterval(timer);
+    }
 
 
 // init Gameboard when DOM content is loaded

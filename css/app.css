@@ -108,19 +108,22 @@ h1 {
     display: inline-block;
     margin: 0 5px 0 20px;
     float: left;
+    width:20%;
 }
 
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    width:20%;
 }
 
 .score-panel .restart {
     float: right;
     cursor: pointer;
+    width:10%;
 }
 .score-panel .timer {
     margin: 0 5px 0 20px;
     display: inline-block;
-    float: left;
+    width: 10%;
 }

@@ -24,6 +24,11 @@ let listOfMatchedCards = [];
 let movesNumber = document.querySelector(".moves");
 let moves= 0 ;
 
+let modal = document.querySelector(".modal");
+let headingModal = document.querySelector("#headingModal");
+let modalMessage="";
+let restartText=document.querySelector(".restart-text");
+
 
 // FUNCTIONS:
 
@@ -150,7 +155,9 @@ function checkMatch() {
     }, 750)
     }
 
-  listOfOpenCards=[];
+    listOfOpenCards=[];
+// console.log(listOfMatchedCards);
+    endGame();
 
 }
 
@@ -163,7 +170,7 @@ function rating() {
     starTwo.innerHTML='<i class="fa fa-star-o"></i>';
     starThree.innerHTML='<i class="fa fa-star-o"></i>';
 
-    //ratingStars = 3
+    ratingStars = 3
   }
 
   if (moves>13 && moves<=24) {
@@ -172,7 +179,7 @@ function rating() {
     starTwo.innerHTML='<i class="fa fa-star-o"></i>';
     starThree.innerHTML='';
 
-    //ratingStars = 2
+    ratingStars = 2
   }
 
   if (moves>25)  {
@@ -181,7 +188,7 @@ function rating() {
     starTwo.innerHTML='';
     starThree.innerHTML='';
 
-    //ratingStars = 1
+    ratingStars = 1
   }
 }
 
@@ -199,6 +206,42 @@ function startTimer() {
 function stopTimer() {
         clearInterval(timer);
     }
+
+
+function endGame() {
+
+  if (listOfMatchedCards.length === 16) {
+
+    modal.style.display = "block";
+    console.log("ende");
+    stopTimer();
+    modalMessage = document.createElement("p")
+    modalMessage.innerHTML = "<p>Your made it in <strong>" +
+      timer.innerHTML +
+      "</strong>, <br> You did it in <strong> "+
+      moves +
+      "</strong> moves <br> and we give you: <strong>" +
+      ratingStars +
+      '</strong>  stars! </p>'
+    modalMessage.classList.add('modal-text')
+    headingModal.appendChild(modalMessage);
+
+    }
+
+}
+
+restartText.onclick = function (event) {
+  //if (event.target === window) {
+    modal.style.display = "none";
+    listOfMatchedCards=[];
+    shuffle(arrayOfCards);
+    stopTimer();
+    movesNumber.innerHTML=0;
+    setupGame();
+    rating();
+
+  //}
+}
 
 
 // init Gameboard when DOM content is loaded

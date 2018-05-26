@@ -100,6 +100,7 @@ function restartGame(){
   setupGame();
 
   rating();
+  modalMessage="";
 
 
   })
@@ -121,14 +122,23 @@ function showCard(target) {
   listOfOpenCards.push(this);
 
 
+  if (listOfOpenCards.length === 1){
+
+    for(let j = 0; j < 16 ; j++) {
+       this.removeEventListener("click", showCard);
+      }
+  }
 
   if (listOfOpenCards.length === 2){
       addMoves();
       checkMatch();
       //rating
       rating();
+      for(let j = 0; j < 16 ; j++) {
+        shuffledCards[j].addEventListener("click", showCard);
+        }
 
-      }
+  }
 }
 
 
@@ -215,9 +225,11 @@ function endGame() {
     modal.style.display = "block";
     console.log("ende");
     stopTimer();
-    modalMessage = document.createElement("p")
+    modalMessage = document.createElement("p");
+    let minutesGame = document.getElementById("minutes");
+    let secondsGame = document.getElementById("seconds");
     modalMessage.innerHTML = "<p>Your made it in <strong>" +
-      timer.innerHTML +
+      minutesGame.textContent + ":" + secondsGame.textContent +
       "</strong>, <br> You did it in <strong> "+
       moves +
       "</strong> moves <br> and we give you: <strong>" +
@@ -232,7 +244,9 @@ function endGame() {
 
 restartText.onclick = function (event) {
   //if (event.target === window) {
+    modalMessage.innerHTML="";
     modal.style.display = "none";
+
     listOfMatchedCards=[];
     shuffle(arrayOfCards);
     stopTimer();

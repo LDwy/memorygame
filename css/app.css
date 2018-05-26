@@ -28,9 +28,6 @@ body {
     flex-direction: column;
 }
 
-#startButton {
-  margin: 5px;
-}
 
 h1 {
     font-family: 'Open Sans', sans-serif;
@@ -100,6 +97,7 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+    display: inline-block;
 }
 
 .score-panel .stars {
@@ -108,24 +106,31 @@ h1 {
     display: inline-block;
     margin: 0 5px 0 20px;
     float: left;
-    width:20%;
+    width: 20%;
 }
 
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
-    width:20%;
+
 }
 
 .score-panel .restart {
     float: right;
     cursor: pointer;
-    width:10%;
+    width: 35px;
+    display: inline-block;
+    margin: 0 5px 0 5px;
 }
 .score-panel .timer {
-    margin: 0 5px 0 20px;
+    margin: 0 5px 0 5px;
     display: inline-block;
-    width: 10%;
+
+}
+.score-panel .yourMoves {
+    margin: 0 5px 0 5px;
+    display: inline-block;
+
 }
 
 
@@ -146,7 +151,6 @@ h1 {
 }
 #headingModal {
   font-family: 'Open Sans', sans-serif;
-
   font-weight: 300;
   font-size: 30px;
   color: rgb(0,0,0);
@@ -170,10 +174,16 @@ h1 {
 }
 
 
-.button-text {
+.restartText {
     font-size: 20px;
     font-weight: bolder;
     letter-spacing: 0.5em;
     text-transform: uppercase;
     color: rgb(0,0,0);
+    padding: 5px;
+}
+
+.restartText:hover {
+    box-shadow: 0 0 7px 3px rgb(95, 95, 95);
+    cursor: pointer;
 }

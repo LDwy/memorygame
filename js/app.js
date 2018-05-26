@@ -1,6 +1,5 @@
 //Variables
 
-
 const deck = document.querySelector(".deck");
 const starOne = document.querySelector(".star_one");
 const starTwo = document.querySelector(".star_two");
@@ -27,36 +26,29 @@ let moves= 0 ;
 let modal = document.querySelector(".modal");
 let headingModal = document.querySelector("#headingModal");
 let modalMessage="";
-let restartText=document.querySelector(".restart-text");
-
+let restartText=document.querySelector(".restartText");
 
 // FUNCTIONS:
 
 
+// Create unordered list;
 
-// // Create unordered list;
-//
- function makeUL() {
+function makeUL() {
 
      // Create the deck element:
-     deck.innerHTML=" ";
-     restartGame();
+  deck.innerHTML=" ";
+  restartGame();
 
-     for(let j = 0; j < 16 ; j++) {
+    for(let j = 0; j < 16 ; j++) {
 
-        shuffledCards[j].classList.remove("show", "open", "match", "card");
-        shuffledCards[j].classList.add("card");
-        shuffledCards[j].addEventListener("click", showCard);
+      shuffledCards[j].classList.remove("show", "open", "match", "card");
+      shuffledCards[j].classList.add("card");
+      shuffledCards[j].addEventListener("click", showCard);
 
-        deck.appendChild(shuffledCards[j]);
-
-
-
-
+      deck.appendChild(shuffledCards[j]);
       }
-
      // Finally, return the constructed list:
-     return deck;
+    return deck;
 
  }
 
@@ -66,31 +58,34 @@ let restartText=document.querySelector(".restart-text");
   *   - loop through each card and create its HTML
   *   - add each card's HTML to the page
   */
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
-  function shuffle(array) {
-      var currentIndex = array.length, temporaryValue, randomIndex;
-
-      while (currentIndex !== 0) {
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
+    while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
       }
 
-      return array;
+    return array;
   }
 
+
+//SET UP THE GAME
 function setupGame() {
 //function to initialise game
-  makeUL();
+    makeUL();
 //count moves
-  moves = 0;
+    moves = 0;
 //timer
-  startTimer();
+    startTimer();
 }
 
+//RESTART THE GAME
 function restartGame(){
+
   restart.addEventListener("click", function () {
 
   shuffle(arrayOfCards);
@@ -98,25 +93,24 @@ function restartGame(){
   stopTimer();
   movesNumber.innerHTML=0;
   setupGame();
-
   rating();
   modalMessage="";
-
 
   })
 }
 
-
+//ADD MOVES TO THE COUNTER
 
 function addMoves() {
+
   moves++;
   movesNumber.innerHTML = moves;
-  //starRating()
+
 }
 
+//SHOW CARD PICTURE
 
 function showCard(target) {
-  //console.log(this);
 
   this.classList.add("open","show");
   listOfOpenCards.push(this);
@@ -140,7 +134,7 @@ function showCard(target) {
 
   }
 }
-
+//CHECK IF CARDS MATCH
 
 function checkMatch() {
 
@@ -158,12 +152,12 @@ function checkMatch() {
     listOfMatchedCards.push(card_one,card_two);
 
 }
-  else{
+  else {
     setTimeout(function(){
       card_one.classList.remove("open","show");
       card_two.classList.remove("open","show");
     }, 750)
-    }
+  }
 
     listOfOpenCards=[];
 // console.log(listOfMatchedCards);
@@ -171,7 +165,7 @@ function checkMatch() {
 
 }
 
-//rating
+//rating with stars
 function rating() {
 
   if (moves<=13) {
@@ -180,7 +174,7 @@ function rating() {
     starTwo.innerHTML='<i class="fa fa-star-o"></i>';
     starThree.innerHTML='<i class="fa fa-star-o"></i>';
 
-    ratingStars = 3
+    ratingStars = 3 //for modal
   }
 
   if (moves>13 && moves<=24) {
@@ -215,7 +209,7 @@ function startTimer() {
 
 function stopTimer() {
         clearInterval(timer);
-    }
+}
 
 
 function endGame() {
@@ -223,7 +217,7 @@ function endGame() {
   if (listOfMatchedCards.length === 16) {
 
     modal.style.display = "block";
-    console.log("ende");
+    //console.log("ende");
     stopTimer();
     modalMessage = document.createElement("p");
     let minutesGame = document.getElementById("minutes");
@@ -242,6 +236,7 @@ function endGame() {
 
 }
 
+//RESTART THE GAME WHEN CLICKING ON TEXT
 restartText.onclick = function (event) {
   //if (event.target === window) {
     modalMessage.innerHTML="";
@@ -254,7 +249,6 @@ restartText.onclick = function (event) {
     setupGame();
     rating();
 
-  //}
 }
 
 

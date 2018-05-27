@@ -24,6 +24,8 @@ http://logicalmoon.com/2015/05/using-javascript-to-create-a-timer
 and of course the P3 FEND Study Jam material helped me a lot, e.g. with the "first click":
 https://github.com/elharony/Udacity-Study-Jam-FEND-P3-Memory-Game
 https://drive.google.com/file/d/1blJv3xK22ozh80RuUC2iA-9_SGQKsJ9E/edit
+The cool animations are from:
+https://github.com/daneden/animate.css.git
 
 ## Have fun!
 

@@ -103,12 +103,14 @@ function click(){
 function restartGame(){
 //button to resart
   restart.addEventListener("click", function () {
+  //remove all cacrds from any list
+  listOfMatchedCards=[];
+  listOfOpenCards=[];
 //mix cards
   shuffle(arrayOfCards);
 //stop time
   stopTimer();
-  listOfMatchedCards=[];
-  movesNumber.innerHTML=0; //set back to 0
+  //movesNumber.innerHTML=0; //set back to 0
   setupGame(); //new Game
   rating(); //stars rating
   modalMessage=""; //remove message from modal
@@ -245,13 +247,13 @@ function endGame() {
     stopTimer();
     modalMessage = document.createElement("p");
 
-    modalMessage.innerHTML = "<p>Your made it in <strong>" +
+    modalMessage.innerHTML = "<p>You made it in <strong>" +
       minutesGame.textContent + ":" + secondsGame.textContent +
-      "</strong>, <br> You did it in <strong> "+
+      "</strong>, <br> you did it in <strong> "+
       moves +
       "</strong> moves <br> and we give you: <strong>" +
       ratingStars +
-      '</strong>  stars! </p>'
+      '</strong>  star(s)! </p>'
     modalMessage.classList.add('modal-text')
     headingModal.appendChild(modalMessage);
     }
@@ -265,6 +267,7 @@ restartText.onclick = function(event) {
     modal.style.display = "none";
 
     listOfMatchedCards=[];
+    listOfOpenCards=[];
     shuffle(arrayOfCards);
     stopTimer();
     movesNumber.innerHTML=0;

@@ -112,11 +112,10 @@ function restartGame(){
   setupGame(); //new Game
   rating(); //stars rating
   modalMessage=""; //remove message from modal
-  secondsGame.textContent=0;
+  secondsGame.textContent=0;//reset time
   minutesGame.textContent=0;
 
   isFirstClick = true;//to start timer off new
-  //click();
 
   })
 }
@@ -274,8 +273,6 @@ restartText.onclick = function(event) {
     secondsGame.textContent=0;
     minutesGame.textContent=0;
     isFirstClick = true;
-    //click();
-
 
 }
 

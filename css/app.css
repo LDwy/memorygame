@@ -95,7 +95,7 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 400px;
     margin-bottom: 10px;
     display: inline-block;
 }
@@ -104,7 +104,7 @@ h1 {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 20px;
+    margin: 0 5px 0 5px;
     float: left;
     width: 20%;
 }
@@ -123,16 +123,19 @@ h1 {
     margin: 0 5px 0 5px;
 }
 .score-panel .timer {
-    margin: 0 5px 0 5px;
+    width: 120px;
     display: inline-block;
 
 }
 .score-panel .yourMoves {
-    margin: 0 5px 0 5px;
+    width: 90px;
     display: inline-block;
 
 }
 
+/*
+ * Styles for the Modal
+ */
 
 .modal {
     display: none;

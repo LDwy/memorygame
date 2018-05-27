@@ -14,7 +14,7 @@ const cards = document.querySelectorAll(".card");
 
 const arrayOfCards = Array.from(cards);
 
-
+//Variables
 let shuffledCards = shuffle(arrayOfCards);
 let listOfOpenCards = [];
 let listOfMatchedCards = [];
@@ -27,6 +27,9 @@ let modal = document.querySelector(".modal");
 let headingModal = document.querySelector("#headingModal");
 let modalMessage="";
 let restartText=document.querySelector(".restartText");
+let minutesGame = document.getElementById("minutes");
+let secondsGame = document.getElementById("seconds");
+let isFirstClick = true;
 
 // FUNCTIONS:
 
@@ -44,6 +47,7 @@ function makeUL() {
       shuffledCards[j].classList.remove("show", "open", "match", "card");
       shuffledCards[j].classList.add("card");
       shuffledCards[j].addEventListener("click", showCard);
+      shuffledCards[j].addEventListener("click", click);
 
       deck.appendChild(shuffledCards[j]);
       }
@@ -80,21 +84,39 @@ function setupGame() {
 //count moves
     moves = 0;
 //timer
-    startTimer();
+    //startTimer();
 }
+
+//Start timer on first click
+function click(){
+
+  if(isFirstClick) {
+    // Start our timer
+    startTimer();
+    // Change our First Click indicator's value
+    isFirstClick = false;
+  }
+}
+
 
 //RESTART THE GAME
 function restartGame(){
-
+//button to resart
   restart.addEventListener("click", function () {
-
+//mix cards
   shuffle(arrayOfCards);
-
+//stop time
   stopTimer();
-  movesNumber.innerHTML=0;
-  setupGame();
-  rating();
-  modalMessage="";
+  listOfMatchedCards=[];
+  movesNumber.innerHTML=0; //set back to 0
+  setupGame(); //new Game
+  rating(); //stars rating
+  modalMessage=""; //remove message from modal
+  secondsGame.textContent=0;
+  minutesGame.textContent=0;
+
+  isFirstClick = true;//to start timer off new
+  //click();
 
   })
 }
@@ -113,17 +135,17 @@ function addMoves() {
 function showCard(target) {
 
   this.classList.add("open","show");
-  listOfOpenCards.push(this);
+  listOfOpenCards.push(this); //add cards to list of opened cards
 
 
-  if (listOfOpenCards.length === 1){
+  if (listOfOpenCards.length === 1){ //avoid double clicking
 
     for(let j = 0; j < 16 ; j++) {
        this.removeEventListener("click", showCard);
       }
   }
 
-  if (listOfOpenCards.length === 2){
+  if (listOfOpenCards.length === 2){ //match or not?
       addMoves();
       checkMatch();
       //rating
@@ -149,9 +171,9 @@ function checkMatch() {
 
     card_one.classList.add("match");
     card_two.classList.add("match");
-    listOfMatchedCards.push(card_one,card_two);
+    listOfMatchedCards.push(card_one,card_two); //add cards to list of matched cards
+  }
 
-}
   else {
     setTimeout(function(){
       card_one.classList.remove("open","show");
@@ -159,8 +181,8 @@ function checkMatch() {
     }, 750)
   }
 
-    listOfOpenCards=[];
-// console.log(listOfMatchedCards);
+    listOfOpenCards=[]; //remove cards to start back from 0
+
     endGame();
 
 }
@@ -199,29 +221,31 @@ function rating() {
 
 //timer from http://logicalmoon.com/2015/05/using-javascript-to-create-a-timer/
 function startTimer() {
-        var seconds = 00;
+
+  var seconds = 00;
 	timer = setInterval(function() {
-	    seconds ++;
-	    document.getElementById("seconds").innerText = seconds % 60;
-            document.getElementById("minutes").innerText = parseInt(seconds / 60);
-        }, 1000);
+	  seconds ++;
+	  document.getElementById("seconds").innerText = seconds % 60;
+    document.getElementById("minutes").innerText = parseInt(seconds / 60);
+    }, 1000);
 }
 
+
 function stopTimer() {
-        clearInterval(timer);
+
+  clearInterval(timer);
 }
 
 
 function endGame() {
 
-  if (listOfMatchedCards.length === 16) {
+  if (listOfMatchedCards.length === 16) { //all cards are clicked and in list
 
     modal.style.display = "block";
     //console.log("ende");
     stopTimer();
     modalMessage = document.createElement("p");
-    let minutesGame = document.getElementById("minutes");
-    let secondsGame = document.getElementById("seconds");
+
     modalMessage.innerHTML = "<p>Your made it in <strong>" +
       minutesGame.textContent + ":" + secondsGame.textContent +
       "</strong>, <br> You did it in <strong> "+
@@ -231,13 +255,12 @@ function endGame() {
       '</strong>  stars! </p>'
     modalMessage.classList.add('modal-text')
     headingModal.appendChild(modalMessage);
-
     }
 
 }
 
 //RESTART THE GAME WHEN CLICKING ON TEXT
-restartText.onclick = function (event) {
+restartText.onclick = function(event) {
   //if (event.target === window) {
     modalMessage.innerHTML="";
     modal.style.display = "none";
@@ -248,6 +271,11 @@ restartText.onclick = function (event) {
     movesNumber.innerHTML=0;
     setupGame();
     rating();
+    secondsGame.textContent=0;
+    minutesGame.textContent=0;
+    isFirstClick = true;
+    //click();
+
 
 }
 

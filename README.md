@@ -12,9 +12,9 @@ By clicking on any card, you will see its picture. Then try to find its match un
 
 ## Facts
 
-· 8 sets of matching cards: makes a total of 16 cards
-· The moves (any opened two cards) will be counted
-· The timer is starting on the first click
-· A star rating will be displayed according to the amount of moves used
+* 8 sets of matching cards: makes a total of 16 cards
+* The moves (any opened two cards) will be counted
+* The timer is starting on the first click
+* A star rating (1 to 3) will be displayed according to the amount of moves used
 
 ## Have fun!
